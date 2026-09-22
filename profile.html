@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Личный кабинет LunaVisual — управление подпиской, привязкой HWID и скачивание клиента.">
+  <link rel="canonical" href="https://lunavisual.ru/profile.html">
+  <title>LunaVisual | Личный кабинет</title>
+  
+  <link rel="icon" type="image/png" href="lunavisual-logo.png">
+  <link rel="shortcut icon" type="image/png" href="lunavisual-logo.png">
+  <link rel="apple-touch-icon" href="lunavisual-logo.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Supabase JS -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+    :root {
+      --p-primary: #9d4edd;
+      --p-primary-hover: #b366ff;
+      --p-glow: rgba(157, 78, 221, 0.45);
+      --p-deep: #5a189a;
+      --p-electric: #7b2cbf;
+      --p-light: #c77dff;
+      --p-soft: #e0aaff;
+      --p-muted: #9f8bc2;
+
+      --bg-dark: #07060b;
+      --bg-card: rgba(20, 14, 32, 0.7);
+      --bg-card-hover: rgba(32, 22, 52, 0.85);
+
+      --border-subtle: rgba(157, 78, 221, 0.22);
+      --border-active: rgba(199, 125, 255, 0.5);
+
+      --text-main: #f8f6fc;
+      --text-muted: #a39bb5;
+      --text-dim: #706884;
+
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-heading: 'Plus Jakarta Sans', 'Inter', sans-serif;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-user-select: none !important;
+      -moz-user-select: none !important;
+      -ms-user-select: none !important;
+      user-select: none !important;
+      -webkit-touch-callout: none !important;
+    }
+
+    input, textarea, [contenteditable="true"] {
+      -webkit-user-select: text !important;
+      -moz-user-select: text !important;
+      -ms-user-select: text !important;
+      user-select: text !important;
+    }
+
+    img {
+      -webkit-user-drag: none !important;
+      user-drag: none !important;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      color-scheme: dark;
+    }
+
+    /* Ultra-Custom Cyber Neon Scrollbar */
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: var(--p-primary, #9d4edd) var(--bg-dark, #07090e);
+    }
+    ::-webkit-scrollbar {
+      width: 11px;
+      height: 11px;
+    }
+    ::-webkit-scrollbar-button {
+      display: none !important;
+      width: 0 !important;
+      height: 0 !important;
+    }
+    ::-webkit-scrollbar-track {
+      background: linear-gradient(180deg, var(--bg-surface, #0f081a) 0%, var(--bg-dark, #07090e) 100%);
+      border-left: 1px solid var(--border-subtle);
+      box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.7);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, var(--p-light) 0%, var(--p-primary) 35%, var(--p-electric) 70%, var(--p-deep) 100%);
+      border-radius: 999px;
+      border: 2px solid var(--bg-dark, #07090e);
+      box-shadow: 0 0 16px var(--p-glow), inset 0 1px 2px rgba(255, 255, 255, 0.6);
+      transition: all 0.25s ease;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(180deg, #ffffff 0%, var(--p-light) 25%, var(--p-primary-hover) 65%, var(--p-electric) 100%);
+      box-shadow: 0 0 28px var(--p-glow), 0 0 12px var(--p-light), inset 0 1px 3px #ffffff;
+      border-color: rgba(7, 9, 14, 0.6);
+    }
+    ::-webkit-scrollbar-thumb:active {
+      background: linear-gradient(180deg, #ffffff 0%, var(--p-light) 35%, var(--p-primary) 70%, var(--p-deep) 100%);
+      box-shadow: 0 0 35px var(--p-glow), 0 0 16px var(--p-light), inset 0 1px 3px #ffffff;
+    }
+    ::-webkit-scrollbar-corner {
+      background: var(--bg-dark, #07090e);
+    }
+
+    @keyframes pageFadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      background-image: 
+        radial-gradient(ellipse 70% 40% at 50% 0%, var(--border-subtle) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 35% at 85% 30%, var(--border-subtle) 0%, transparent 60%);
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+      opacity: 1;
+      animation: pageFadeIn 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      transition: opacity 0.32s cubic-bezier(0.22, 1, 0.36, 1), transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    body.page-transition-exit {
+      opacity: 0 !important;
+      transform: translateY(-6px) !important;
+      pointer-events: none;
+    }
+
+    /* Ambient Glow Lights (Balanced Atmospheric Lighting) */
+    .ambient-glow-1, .ambient-glow-2 {
+      position: fixed;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .ambient-glow-1 {
+      top: -16%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1000px;
+      height: 750px;
+      background: radial-gradient(ellipse at center, var(--theme-glow-1, #9d4edd) 0%, var(--p-electric) 35%, transparent 70%);
+      filter: blur(115px);
+      opacity: 0.55;
+      animation: floatGlow 20s ease-in-out infinite alternate;
+    }
+    .ambient-glow-2 {
+      top: 25%;
+      right: -8%;
+      width: 850px;
+      height: 850px;
+      background: radial-gradient(circle, var(--theme-glow-2, #7b2cbf) 0%, var(--p-deep) 40%, transparent 70%);
+      filter: blur(125px);
+      opacity: 0.45;
+      animation: floatGlow 24s ease-in-out infinite alternate -6s;
+    }
+
+    /* Full-Page Cyber Grid with Squares & Ambient Gradient */
+    .cyber-grid-bg {
+      position: fixed;
+      inset: 0;
+      background-image: 
+        linear-gradient(to right, var(--border-subtle) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--border-subtle) 1px, transparent 1px);
+      background-size: 55px 55px;
+      mask-image: radial-gradient(circle at 50% 50%, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.55) 75%, transparent 100%);
+      -webkit-mask-image: radial-gradient(circle at 50% 50%, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.55) 75%, transparent 100%);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.65;
+    }
+
+    @keyframes floatGlow {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(40px, 30px) scale(1.1); }
+      100% { transform: translate(-30px, 50px) scale(0.95); }
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 1rem 0;
+      background: rgba(7, 6, 11, 0.75);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-subtle);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      font-family: var(--font-heading);
+      font-weight: 900;
+      font-size: 1.35rem;
+      letter-spacing: 0.08em;
+      color: #fff;
+    }
+
+    .logo-img {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      object-fit: cover;
+      border: 1.5px solid var(--border-active);
+      box-shadow: 0 0 18px var(--p-glow);
+    }
+
+    nav ul {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      list-style: none;
+      background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-card) 100%);
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border-active);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 25px var(--p-glow);
+    }
+
+    .nav-link-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+    .nav-link-btn:hover {
+      color: #fff;
+      background: linear-gradient(135deg, var(--border-subtle) 0%, var(--border-active) 100%);
+      box-shadow: 0 0 15px var(--p-glow);
+    }
+
+    .lang-switcher {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border-subtle);
+      border-radius: 999px;
+      padding: 3px 6px;
+      backdrop-filter: blur(8px);
+    }
+    .lang-btn {
+      background: transparent;
+      border: 0;
+      color: var(--text-muted);
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .lang-btn:hover { color: #fff; }
+    .lang-btn.active {
+      background: linear-gradient(135deg, var(--p-primary), var(--p-electric));
+      color: var(--p-contrast-text, #fff);
+      box-shadow: 0 0 10px var(--p-glow);
+    }
+    .lang-divider {
+      color: rgba(255, 255, 255, 0.2);
+      font-size: 0.72rem;
+    }
+
+    /* Profile Container */
+    .profile-page-wrapper {
+      flex: 1;
+      max-width: 780px;
+      width: 100%;
+      margin: 8rem auto 4rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .page-back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: transparent;
+      border: none;
+      color: var(--p-soft);
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 0.92rem;
+      cursor: pointer;
+      margin-bottom: 1.5rem;
+      transition: all 0.2s ease;
+    }
+    .page-back-btn:hover {
+      color: #fff;
+      transform: translateX(-4px);
+    }
+
+    .standalone-card {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border-subtle);
+      border-radius: 28px;
+      padding: 2.75rem;
+      backdrop-filter: blur(24px);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 50px var(--p-glow);
+    }
+
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 16px;
+      font-size: 0.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--p-soft);
+      background: var(--border-subtle);
+      border: 1px solid var(--border-active);
+      border-radius: 999px;
+      margin-bottom: 1rem;
+    }
+
+    .auth-header-standalone {
+      text-align: center;
+      margin-bottom: 2.25rem;
+    }
+    .auth-header-standalone h1 {
+      font-family: var(--font-heading);
+      font-size: 2.2rem;
+      font-weight: 900;
+      margin-bottom: 0.5rem;
+    }
+    .auth-header-standalone h1 span {
+      background: linear-gradient(135deg, #ffffff 10%, var(--p-soft) 50%, var(--p-primary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .auth-header-standalone p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* Tabs */
+    .standalone-tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 6px;
+      margin-bottom: 2rem;
+    }
+    .standalone-tab-btn {
+      padding: 12px;
+      border-radius: 10px;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+    .standalone-tab-btn.active {
+      background: linear-gradient(135deg, var(--p-primary) 0%, var(--p-electric) 100%);
+      color: #fff;
+      box-shadow: 0 4px 18px var(--p-glow);
+    }
+
+    /* Form Styles */
+    .auth-form { display: none; }
+    .auth-form.active { display: block; }
+
+    .form-group {
+      margin-bottom: 1.35rem;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 0.45rem;
+    }
+
+    .input-dark {
+      width: 100%;
+      background: var(--bg-surface);
+      border: 1.5px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 14px 18px;
+      color: #fff;
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      outline: none;
+      transition: all 0.25s ease;
+    }
+    .input-dark:focus {
+      border-color: var(--p-light);
+      box-shadow: 0 0 20px var(--p-glow);
+      background: rgba(18, 12, 30, 0.95);
+    }
+
+    .btn-auth-submit {
+      width: 100%;
+      padding: 15px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      background: linear-gradient(135deg, var(--p-primary) 0%, var(--p-electric) 100%);
+      color: var(--p-contrast-text, #fff);
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 0 30px var(--p-glow);
+      transition: all 0.25s ease;
+      margin-top: 0.5rem;
+    }
+    .btn-auth-submit:hover {
+      background: linear-gradient(135deg, var(--p-primary-hover) 0%, var(--p-primary) 100%);
+      box-shadow: 0 0 45px var(--p-glow);
+      transform: translateY(-2px);
+    }
+
+    /* Alerts */
+    .alert-msg {
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      display: none;
+    }
+    .alert-msg.error {
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      color: #fca5a5;
+    }
+    .alert-msg.success {
+      background: rgba(34, 197, 94, 0.15);
+      border: 1px solid rgba(34, 197, 94, 0.4);
+      color: #86efac;
+    }
+
+    /* Profile View */
+    .profile-view { display: none; }
+    .profile-view.active { display: block; }
+    .auth-view { display: none; }
+    .auth-view.active { display: block; }
+
+    .profile-hero {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border-subtle);
+      margin-bottom: 2rem;
+    }
+    .avatar-wrap {
+      width: 72px;
+      height: 72px;
+      border-radius: 18px;
+      background: var(--border-subtle);
+      border: 2px solid var(--border-active);
+      box-shadow: 0 0 25px var(--p-glow);
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .avatar-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      image-rendering: pixelated;
+    }
+    .user-info-text h2 {
+      font-family: var(--font-heading);
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 0.2rem;
+      color: #fff;
+    }
+    .user-info-text p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    /* Info Grid */
+    .profile-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .profile-card {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border-subtle);
+      border-radius: 18px;
+      padding: 1.5rem;
+      transition: all 0.25s ease;
+    }
+    .profile-card:hover {
+      border-color: var(--border-active);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 25px var(--p-glow);
+      background: var(--bg-card-hover);
+    }
+    .card-label {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.6rem;
+    }
+    .card-status-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 800;
+      background: rgba(34, 197, 94, 0.2);
+      border: 1px solid rgba(34, 197, 94, 0.4);
+      color: #86efac;
+      margin-bottom: 0.5rem;
+    }
+    .card-status-badge.inactive {
+      background: rgba(239, 68, 68, 0.15);
+      border-color: rgba(239, 68, 68, 0.35);
+      color: #fca5a5;
+    }
+    .card-detail {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+    }
+    .hwid-code {
+      font-family: monospace;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--p-light);
+      margin-bottom: 0.4rem;
+      word-break: break-all;
+    }
+
+    /* Key Box & Admin Box */
+    .profile-key-box, .admin-generator-box {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border-subtle);
+      border-radius: 18px;
+      padding: 1.5rem;
+      margin-top: 1.25rem;
+    }
+    .key-redeem-form {
+      display: flex;
+      gap: 10px;
+      margin-top: 0.6rem;
+    }
+    .btn-redeem {
+      padding: 0 24px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--p-primary) 0%, var(--p-electric) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: var(--p-contrast-text, #fff);
+      font-family: var(--font-heading);
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      white-space: nowrap;
+    }
+    .btn-redeem:hover {
+      background: linear-gradient(135deg, var(--p-primary-hover) 0%, var(--p-primary) 100%);
+      box-shadow: 0 0 20px var(--p-glow);
+    }
+
+    /* Custom Dropdown */
+    .admin-gen-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 0.6rem;
+    }
+    .custom-select-wrapper {
+      position: relative;
+      flex: 1;
+    }
+    .custom-select-trigger {
+      width: 100%;
+      padding: 12px 16px;
+      background: var(--bg-surface);
+      border: 1.5px solid var(--border-subtle);
+      border-radius: 12px;
+      color: #fff;
+      font-size: 0.92rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+    .custom-options-menu {
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      width: 100%;
+      background: var(--bg-surface);
+      border: 1.5px solid var(--border-active);
+      border-radius: 14px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px var(--p-glow);
+      overflow: hidden;
+      z-index: 50;
+      display: none;
+    }
+    .custom-select-wrapper.open .custom-options-menu { display: block; }
+    .custom-option {
+      padding: 10px 16px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .custom-option:hover, .custom-option.selected {
+      background: var(--border-subtle);
+      color: #fff;
+    }
+
+    .btn-admin-gen {
+      padding: 0 20px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--p-primary) 0%, var(--p-electric) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: var(--p-contrast-text, #fff);
+      font-family: var(--font-heading);
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .last-key-display {
+      margin-top: 1rem;
+      padding: 0;
+      overflow: hidden;
+      background: rgba(12, 10, 19, 0.82);
+      border: 1px solid var(--border-active);
+      border-radius: 14px;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    }
+    .key-gen-result {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 1.1rem;
+    }
+    .key-gen-info {
+      min-width: 0;
+      display: grid;
+      gap: .35rem;
+    }
+    .key-gen-label {
+      color: var(--text-dim);
+      font-size: .68rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .key-gen-code {
+      color: #f4efff;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: .93rem;
+      font-weight: 800;
+      letter-spacing: .035em;
+      overflow-wrap: anywhere;
+      -webkit-user-select: text !important;
+      user-select: text !important;
+    }
+    .btn-copy-key {
+      flex: 0 0 auto;
+      min-height: 40px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem;
+      padding: .65rem .9rem;
+      border: 1px solid rgba(255, 255, 255, .2);
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--p-primary), var(--p-electric));
+      color: #fff;
+      font-family: var(--font-sans);
+      font-size: .8rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform .18s ease, filter .18s ease;
+    }
+    .btn-copy-key:hover { filter: brightness(1.12); transform: translateY(-1px); }
+    .btn-copy-key svg { width: 16px; height: 16px; }
+    .btn-copy-key.copied { background: #10b981; color: #052e1f; }
+
+    /* Client Download Box */
+    .profile-download-box { margin-top: 1.25rem; }
+    .btn-client-download {
+      width: 100%;
+      padding: 1.25rem 1.5rem;
+      border-radius: 18px;
+      background: linear-gradient(135deg, var(--border-subtle) 0%, var(--border-active) 100%);
+      border: 1.5px solid var(--border-active);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 30px var(--p-glow);
+      transition: all 0.25s ease;
+    }
+    .btn-client-download:hover {
+      transform: translateY(-3px);
+      border-color: var(--p-light);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 45px var(--p-glow);
+    }
+    .dl-text { text-align: left; }
+    .dl-title { display: block; font-family: var(--font-heading); font-size: 1.1rem; font-weight: 800; }
+    .dl-sub { font-size: 0.84rem; color: var(--p-soft); }
+    .dl-tag {
+      background: #fff;
+      color: #07060b;
+      font-family: var(--font-heading);
+      font-size: 0.76rem;
+      font-weight: 900;
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    /* Profile Actions */
+    .profile-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+    .btn-admin-nav, .btn-hwid-reset, .btn-logout {
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 0.92rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-admin-nav {
+      background: linear-gradient(135deg, var(--border-subtle) 0%, var(--border-active) 100%);
+      border: 1px solid var(--border-active);
+      color: #fff;
+    }
+    .btn-hwid-reset {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border-subtle);
+      color: #fff;
+    }
+    .btn-logout {
+      background: rgba(239, 68, 68, 0.12);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: #fca5a5;
+    }
+    .btn-logout:hover {
+      background: rgba(239, 68, 68, 0.25);
+      color: #fff;
+    }
+
+    /* Footer */
+    footer {
+      padding: 3rem 0;
+      border-top: 1px solid var(--border-subtle);
+      background: transparent;
+      text-align: center;
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+    .footer-links button {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      cursor: pointer;
+    }
+    .footer-links button:hover { color: var(--p-soft); }
+
+    .footer-links-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 1.25rem;
+    }
+    .footer-contact-link {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      transition: color 0.2s ease, transform 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .footer-contact-link:hover {
+      color: #fff;
+      text-shadow: 0 0 12px var(--p-glow);
+    }
+    .footer-contact-link svg {
+      color: var(--p-light);
+      transition: transform 0.2s ease;
+    }
+    .footer-contact-link:hover svg {
+      transform: scale(1.15);
+      color: #fff;
+    }
+    .footer-divider-dot {
+      color: var(--border-active);
+      font-size: 0.75rem;
+      opacity: 0.5;
+    }
+    .footer-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 0.85rem;
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      margin-top: 1rem;
+    }
+    .footer-plat-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 10px;
+      border-radius: 6px;
+      background: rgba(157, 78, 221, 0.08);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      font-size: 0.76rem;
+      font-family: monospace;
+    }
+    .footer-plat-badge strong {
+      color: var(--p-light);
+    }
+    .copyright { font-size: 0.8rem; color: var(--text-dim); }
+
+    /* Custom Confirm Modal */
+    .confirm-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(12px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+    .confirm-modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .confirm-modal-card {
+      background: var(--bg-surface);
+      border: 1.5px solid var(--border-active);
+      border-radius: 24px;
+      padding: 2.25rem;
+      max-width: 440px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.9), 0 0 50px var(--p-glow);
+    }
+    .confirm-modal-card h3 {
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      font-weight: 800;
+      margin-bottom: 0.6rem;
+      color: #fff;
+    }
+    .confirm-modal-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 1.75rem;
+      line-height: 1.6;
+    }
+    .confirm-actions {
+      display: flex;
+      gap: 12px;
+    }
+    .btn-confirm-cancel, .btn-confirm-ok {
+      flex: 1;
+      padding: 12px 0;
+      border-radius: 12px;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+    }
+    .btn-confirm-cancel {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fff;
+    }
+    .btn-confirm-ok {
+      background: linear-gradient(135deg, var(--p-primary) 0%, var(--p-electric) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: #fff;
+      box-shadow: 0 0 20px var(--p-glow);
+    }
+
+    @media (max-width: 640px) {
+      .profile-page-wrapper { margin-top: 6.5rem; }
+      .standalone-card { padding: 1.75rem 1.25rem; }
+      .profile-grid { grid-template-columns: 1fr; }
+      .admin-gen-row, .key-redeem-form { flex-direction: column; }
+      .key-gen-result { align-items: stretch; flex-direction: column; }
+      .btn-copy-key { width: 100%; }
+    }
+  </style>
+  <link rel="stylesheet" href="luna-theme.css">
+</head>
+<body>
+
+  <div class="ambient-glow-1"></div>
+  <div class="ambient-glow-2"></div>
+  <div class="cyber-grid-bg"></div>
+
+  <!-- Sticky Header -->
+  <header>
+    <div class="nav-container">
+      <button type="button" class="logo" onclick="location.href='index.html'" aria-label="LunaVisual">
+        <img class="logo-img" src="lunavisual-logo.png" alt="LunaVisual Logo">
+        <span>LunaVisual</span>
+      </button>
+      <nav>
+        <ul>
+          <li><button type="button" class="nav-link-btn" onclick="location.href='index.html'" data-i18n="nav_home">Главная</button></li>
+          <li><button type="button" class="nav-link-btn" onclick="location.href='index.html#features'" data-i18n="nav_features">Особенности</button></li>
+          <li><button type="button" class="nav-link-btn" onclick="location.href='index.html#pricing'" data-i18n="nav_pricing">Тарифы</button></li>
+          <li><button type="button" class="nav-link-btn" onclick="location.href='news.html'">Новости</button></li>
+          <li><button type="button" class="nav-link-btn" onclick="location.href='creators.html'">Для блогеров</button></li>
+          <li><button type="button" class="nav-link-btn" onclick="window.open('https://discord.gg/7FhVmvPtME', '_blank')" data-i18n="nav_discord">Discord</button></li>
+          <li class="lang-switch-item">
+            <div class="lang-switcher" role="group" aria-label="Language Selector">
+              <button type="button" class="lang-btn active" data-lang="ru">RU</button>
+              <span class="lang-divider">/</span>
+              <button type="button" class="lang-btn" data-lang="en">EN</button>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="profile-page-wrapper">
+    <button type="button" class="page-back-btn" onclick="location.href='index.html'" data-i18n="prof_back">
+      ← Вернуться на главную
+    </button>
+
+    <div class="standalone-card">
+      
+      <!-- VIEW 1: AUTH (LOGIN & REGISTER) -->
+      <div class="auth-view active" id="authView">
+        <div class="auth-header-standalone">
+          <span class="section-tag" data-i18n="prof_tag">Аккаунт LunaVisual</span>
+          <h1 id="authTitle" data-i18n="prof_auth_title">Авторизация <span>LunaVisual</span></h1>
+          <p id="authSubtitle" data-i18n="prof_auth_subtitle">Войдите в личный кабинет для доступа к подписке и ключам</p>
+        </div>
+
+        <div class="standalone-tabs">
+          <button type="button" class="standalone-tab-btn active" id="tabLoginBtn" data-i18n="prof_tab_login">Вход</button>
+          <button type="button" class="standalone-tab-btn" id="tabRegisterBtn" data-i18n="prof_tab_register">Регистрация</button>
+        </div>
+
+        <div id="authAlert" class="alert-msg" style="display:none;"></div>
+
+        <!-- Login Form -->
+        <form id="formLogin" class="auth-form active" novalidate>
+          <div class="form-group">
+            <label for="loginEmail" data-i18n="prof_login_email_lbl">Email</label>
+            <input type="email" id="loginEmail" class="input-dark" placeholder="name@example.com" required autocomplete="email">
+          </div>
+          <div class="form-group">
+            <label for="loginPassword" data-i18n="prof_login_pass_lbl">Пароль</label>
+            <input type="password" id="loginPassword" class="input-dark" placeholder="••••••••" required autocomplete="current-password">
+          </div>
+          <div class="form-helper-row" style="display:flex; justify-content:flex-end; margin-top:-0.4rem; margin-bottom:0.8rem;">
+            <button type="button" class="forgot-pass-btn" onclick="location.href='reset-password.html'" style="background:transparent; border:none; color:var(--p-light); font-family:var(--font-sans); font-size:0.85rem; font-weight:600; cursor:pointer; padding:0; transition:color 0.2s;" data-i18n="prof_forgot_pass">Забыли пароль?</button>
+          </div>
+          <button type="submit" class="btn-auth-submit" id="btnSubmitLogin" data-i18n="prof_btn_login">
+            Войти в аккаунт
+          </button>
+        </form>
+
+        <!-- Register Form -->
+        <form id="formRegister" class="auth-form" novalidate>
+          <div class="form-group">
+            <label for="regNickname" data-i18n="prof_reg_nick_lbl">Игровой никнейм (Minecraft)</label>
+            <input type="text" id="regNickname" class="input-dark" placeholder="Например: SadeWow" data-i18n-placeholder="prof_reg_nick_ph" required autocomplete="username">
+          </div>
+          <div class="form-group">
+            <label for="regEmail" data-i18n="prof_reg_email_lbl">Email</label>
+            <input type="email" id="regEmail" class="input-dark" placeholder="name@example.com" required autocomplete="email">
+          </div>
+          <div class="form-group">
+            <label for="regPassword" data-i18n="prof_reg_pass_lbl">Пароль (минимум 6 символов)</label>
+            <input type="password" id="regPassword" class="input-dark" placeholder="••••••••" required autocomplete="new-password">
+          </div>
+          <button type="submit" class="btn-auth-submit" id="btnSubmitRegister" data-i18n="prof_btn_register">
+            Зарегистрироваться
+          </button>
+        </form>
+      </div>
+
+      <!-- VIEW 2: PROFILE DASHBOARD -->
+      <div class="profile-view" id="profileView">
+        <div class="profile-hero">
+          <div class="avatar-wrap">
+            <img id="profileAvatar" class="avatar-img" src="lunavisual-logo.png" alt="Аватар LunaVisual">
+          </div>
+          <div class="user-info-text">
+            <h2 id="profileUsername" data-i18n="prof_player">Игрок</h2>
+            <p id="profileUserEmail">user@example.com</p>
+          </div>
+        </div>
+
+        <div id="profileAlert" class="alert-msg" style="display:none;"></div>
+
+        <!-- Info Grid -->
+        <div class="profile-grid">
+          <div class="profile-card">
+            <div class="card-label" data-i18n="prof_sub_label">Статус подписки</div>
+            <div class="card-status-badge inactive" id="profileSubBadge" data-i18n="prof_sub_inactive">Не активна</div>
+            <div class="card-detail" id="profileSubExpiry" data-i18n="prof_sub_need_key">Требуется активация ключа</div>
+          </div>
+
+          <div class="profile-card">
+            <div class="card-label" data-i18n="prof_hwid_label">Привязанный HWID</div>
+            <div class="hwid-code" id="profileHwidVal" data-i18n="prof_hwid_not_bound">Не привязан</div>
+            <div class="card-detail" data-i18n="prof_hwid_detail">Привязывается автоматически при входе в игру</div>
+          </div>
+
+          <div class="profile-card">
+            <div class="card-label">Ранг аккаунта</div>
+            <div class="card-status-badge active" id="profileRank">Пользователь</div>
+            <div class="card-detail">YouTube, TikTok, Twitch Streamer, Тестер или Админ</div>
+          </div>
+
+          <div class="profile-card">
+            <div class="card-label">Alpha-доступ</div>
+            <div class="card-status-badge inactive" id="profileAlphaBadge">Не активен</div>
+            <div class="card-detail" id="profileAlphaExpiry">Активируйте ALPHALUNA-KEY</div>
+          </div>
+        </div>
+
+        <!-- Key Activation Box -->
+        <div class="profile-key-box">
+          <div class="card-label" data-i18n="prof_key_label">Активация по ключу</div>
+          <form id="formRedeemKey" class="key-redeem-form" novalidate>
+            <input type="text" id="inputLicenseKey" class="input-dark" placeholder="Введите ключ (LUNAVISUALKEY-0000-0000-0000-0000-0000)" data-i18n-placeholder="prof_key_ph" autocomplete="off">
+            <button type="submit" class="btn-redeem" id="btnRedeemKey" data-i18n="prof_key_btn">Применить</button>
+          </form>
+        </div>
+
+        <div class="profile-key-box">
+          <div class="card-label">Alpha-доступ по отдельному ключу</div>
+          <form id="formRedeemAlphaKey" class="key-redeem-form" novalidate>
+            <input type="text" id="inputAlphaKey" class="input-dark" placeholder="ALPHALUNA-KEY-XXXXXX-XXXXXX-XXXXXX-XXXXXX-XXXXXX-XXXXXX-XXXXXX" autocomplete="off">
+            <button type="submit" class="btn-redeem">Активировать Alpha</button>
+          </form>
+        </div>
+
+        <!-- Admin Key Generator Section -->
+        <div class="admin-generator-box" id="adminGeneratorBox" style="display:none;">
+          <div class="card-label" data-i18n="prof_admin_gen_label">⚡ Панель создания ключей (Администратор)</div>
+          <div class="admin-gen-row">
+            <div class="custom-select-wrapper" id="customPlanSelect">
+              <button type="button" class="custom-select-trigger" id="customPlanTrigger">
+                <span id="customPlanSelectedLabel" data-i18n="plan_opt_lifetime">Навсегда (Lifetime)</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+              <div class="custom-options-menu" id="customPlanOptions">
+                <div class="custom-option" data-value="7" data-i18n="plan_opt_7d">7 Дней (Розыгрыши)</div>
+                <div class="custom-option" data-value="30" data-i18n="plan_opt_30d">30 Дней</div>
+                <div class="custom-option" data-value="90" data-i18n="plan_opt_90d">90 Дней</div>
+                <div class="custom-option selected" data-value="9999" data-i18n="plan_opt_lifetime">Навсегда (Lifetime)</div>
+              </div>
+              <input type="hidden" id="selectKeyPlan" value="9999">
+            </div>
+            <button type="button" class="btn-admin-gen" id="btnAdminGenKey" data-i18n="prof_admin_gen_btn">+ Создать ключ</button>
+          </div>
+          <div id="adminLastKeyDisplay" class="last-key-display" style="display:none; margin-top:1rem;"></div>
+        </div>
+
+        <!-- Download Client Box -->
+        <div class="profile-download-box" id="profileDownloadBox" style="display:none;">
+          <button type="button" class="btn-client-download" id="btnDownloadClient">
+            <div class="dl-text">
+              <span class="dl-title" data-i18n="prof_dl_title">Скачать LunaVisual Launcher</span>
+              <span class="dl-sub" data-i18n="prof_dl_sub">Полный комплект лаунчера (ZIP)</span>
+            </div>
+            <span class="dl-tag">.EXE</span>
+          </button>
+        </div>
+
+        <div class="profile-actions">
+          <button type="button" class="btn-admin-nav" id="btnAdminPanel" style="display:none;" onclick="location.href='admin.html'" data-i18n="prof_btn_admin">
+            ⚡ Админ-панель
+          </button>
+          <button type="button" class="btn-admin-nav" onclick="location.href='news.html'">📰 Новости</button>
+          <button type="button" class="btn-admin-nav" onclick="location.href='creators.html'">★ Подать на ранг</button>
+          <button type="button" class="btn-admin-nav" onclick="location.href='models.html'">◈ Модельки</button>
+          <button type="button" class="btn-hwid-reset" id="btnResetHwid" style="display:none;" data-i18n="prof_btn_reset_hwid">
+            ⟳ Сбросить привязку HWID
+          </button>
+          <button type="button" class="btn-logout" id="btnLogout" data-i18n="prof_btn_logout">
+            Выйти из аккаунта
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-links">
+      <button type="button" onclick="location.href='index.html'" data-i18n="footer_home">Главная</button>
+      <button type="button" onclick="location.href='index.html#features'" data-i18n="footer_features">Особенности</button>
+      <button type="button" onclick="location.href='index.html#pricing'" data-i18n="footer_pricing">Тарифы</button>
+      <button type="button" onclick="location.href='news.html'">Новости</button>
+      <button type="button" onclick="location.href='creators.html'">Для блогеров</button>
+      <button type="button" onclick="location.href='models.html'">Модельки</button>
+      <button type="button" onclick="location.href='terms.html'" data-i18n="footer_terms">Пользовательское соглашение</button>
+      <button type="button" onclick="location.href='privacy.html'" data-i18n="footer_privacy">Политика конфиденциальности</button>
+    </div>
+
+        <!-- Support Channels Row -->
+    <div class="footer-links-row" style="margin-top: 1rem;">
+      <button type="button" class="footer-contact-link" onclick="window.open('https://t.me/Luna_visual','_blank')">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.75-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
+        <span>Telegram Поддержка: @Luna_visual</span>
+      </button>
+      <span class="footer-divider-dot">•</span>
+      <button type="button" class="footer-contact-link" onclick="location.href='mailto:techbitsupport@gmail.com'">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <span>Email Поддержки: techbitsupport@gmail.com</span>
+      </button>
+      <span class="footer-divider-dot">•</span>
+      <button type="button" class="footer-contact-link" onclick="location.href='mailto:techbitsupport@gmail.com'">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <span>Email: techbitsupport@gmail.com</span>
+      </button>
+      <span class="footer-divider-dot">•</span>
+      <button type="button" class="footer-contact-link" onclick="window.open('https://discord.gg/7FhVmvPtME','_blank')">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.893.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+        <span>Discord Сообщество</span>
+      </button>
+    </div>
+
+    <!-- Verification & Copyright Row -->
+    <div class="footer-meta-row">
+      <span class="footer-plat-badge">Код проверки кассы: <strong>PLAT</strong></span>
+      <span class="footer-divider-dot">•</span>
+      <span class="copyright" data-i18n="footer_copy">
+        &copy; 2026 LunaVisual. Все права защищены. Minecraft является торговой маркой Mojang Synergies AB. Данный сайт не аффилирован с Mojang.
+      </span>
+    </div>
+  </footer>
+
+  <!-- Custom Neon Confirmation Modal -->
+  <div class="confirm-modal-overlay" id="confirmModal" aria-hidden="true">
+    <div class="confirm-modal-card" role="dialog">
+      <h3 id="confirmModalTitle" data-i18n="prof_modal_title">Подтвердите действие</h3>
+      <p id="confirmModalMsg" data-i18n="prof_modal_msg">Вы уверены, что хотите сбросить привязку HWID?</p>
+      <div class="confirm-actions">
+        <button type="button" class="btn-confirm-cancel" id="btnConfirmCancel" data-i18n="prof_modal_cancel">Отмена</button>
+        <button type="button" class="btn-confirm-ok" id="btnConfirmOk" data-i18n="prof_modal_ok">Да, сбросить</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="site-config.js"></script>
+  <script src="profile-app.js?v=5"></script>
+</body>
+</html>
