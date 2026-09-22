@@ -1,0 +1,37 @@
+LunaVisual Launcher / Models API
+================================
+
+После входа пользователя лаунчер должен отправлять его Supabase access token.
+
+1) Общее состояние:
+POST /rest/v1/rpc/get_lunavisual_launcher_state
+Authorization: Bearer <USER_ACCESS_TOKEN>
+apikey: <PUBLISHABLE_KEY>
+Content-Type: application/json
+Body: {}
+
+Ответ содержит:
+  subscription_active
+  alpha_active
+  rank
+  role
+  models: [{id, slug, name, preview_url}, ...]
+
+2) Список выданных моделей:
+POST /rest/v1/rpc/get_my_lunavisual_models
+Authorization: Bearer <USER_ACCESS_TOKEN>
+apikey: <PUBLISHABLE_KEY>
+Content-Type: application/json
+Body: {}
+
+3) Временная ссылка на приватный файл модели:
+POST https://pdibtleothnnmihhrbcr.supabase.co/functions/v1/model-download-url
+Authorization: Bearer <USER_ACCESS_TOKEN>
+apikey: <PUBLISHABLE_KEY>
+Content-Type: application/json
+Body: {"model_id":"<UUID>"}
+
+Ответ:
+  {"ok":true,"url":"<SIGNED_URL>","expires_in":300,...}
+
+Файл модели в bucket models-assets приватный. Нельзя раздавать постоянную public URL.

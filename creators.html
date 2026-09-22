@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>LunaVisual — Ранги блогеров</title>
+  <meta name="description" content="Подключение YouTube, TikTok и Twitch к аккаунту LunaVisual и заявка на ранг.">
+  <link rel="canonical" href="https://lunavisual.ru/creators.html">
+  <link rel="icon" href="lunavisual-logo.png"><link rel="stylesheet" href="portal.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+<header class="topbar"><div class="shell"><a class="brand" href="index.html"><img src="lunavisual-logo.png" alt="LunaVisual"><span>LunaVisual</span></a><nav class="nav"><a href="index.html">Главная</a><a href="news.html">Новости</a><a href="creators.html">Для блогеров</a><a href="models.html">Модельки</a><a href="profile.html">Кабинет</a></nav></div></header>
+<main class="main shell">
+  <section class="hero"><div class="eyebrow">Creator Program</div><h1>Ранги YouTube, TikTok и Twitch</h1><p>Подключите аккаунт платформы к своему LunaVisual-профилю. Сайт сохранит ID канала/аккаунта и проверит доступную статистику через официальный OAuth.</p></section>
+  <div class="notice">Запрашивается только доступ на чтение данных, нужных для подтверждения аккаунта и статистики. Доступ к публикации, удалению контента или управлению каналом не нужен и не запрашивается.</div>
+  <div id="pageStatus" class="status"></div>
+  <section class="grid cols3" style="margin-top:18px">
+    <article class="card"><h2>YouTube</h2><p class="muted">Минимум <strong>1 000</strong> подписчиков.</p><div id="youtubeConnection" class="provider"><span class="muted">Не подключён</span></div><div class="row" style="margin-top:12px"><button class="btn primary" data-connect="youtube">Подключить Google / YouTube</button><button class="btn" data-refresh="youtube">Обновить</button><button class="btn" data-apply="youtube">Подать заявку</button><button class="btn danger" data-disconnect="youtube">Отключить</button></div></article>
+    <article class="card"><h2>TikTok</h2><p class="muted">Минимум <strong>2 000</strong> подписчиков.</p><div id="tiktokConnection" class="provider"><span class="muted">Не подключён</span></div><div class="row" style="margin-top:12px"><button class="btn primary" data-connect="tiktok">Подключить TikTok</button><button class="btn" data-refresh="tiktok">Обновить</button><button class="btn" data-apply="tiktok">Подать заявку</button><button class="btn danger" data-disconnect="tiktok">Отключить</button></div></article>
+    <article class="card"><h2>Twitch Streamer</h2><p class="muted">Минимум <strong>500</strong> фолловеров.</p><div id="twitchConnection" class="provider"><span class="muted">Не подключён</span></div><div class="row" style="margin-top:12px"><button class="btn primary" data-connect="twitch">Подключить Twitch</button><button class="btn" data-refresh="twitch">Обновить</button><button class="btn" data-apply="twitch">Подать заявку</button><button class="btn danger" data-disconnect="twitch">Отключить</button></div></article>
+  </section>
+  <section class="card" style="margin-top:18px"><h2>Мои заявки</h2><p class="muted">После проверки администратор может выдать ранг. Автоматический анализ использует только доступные официальные метрики и не может достоверно определить каждого накрученного подписчика.</p><div id="appsList" class="grid" style="margin-top:12px"></div></section>
+</main>
+<footer class="footer"><div class="shell"><span>© 2026 LunaVisual</span><span>Поддержка: <a href="mailto:techbitsupport@gmail.com">techbitsupport@gmail.com</a></span></div></footer>
+<script src="site-config.js"></script><script src="creators-app.js?v=5"></script>
+</body></html>

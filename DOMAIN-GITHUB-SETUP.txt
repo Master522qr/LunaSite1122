@@ -1,0 +1,18 @@
+LunaVisual / GitHub Pages / HTTPS
+================================
+
+1. Загрузите содержимое этой папки в корень GitHub Pages репозитория.
+2. В Settings -> Pages задайте Custom domain: lunavisual.ru
+3. В DNS регистратора настройте apex-домен lunavisual.ru по актуальной инструкции GitHub Pages.
+4. Дождитесь проверки DNS/сертификата.
+5. Включите Enforce HTTPS в GitHub Pages.
+
+Файл CNAME уже содержит lunavisual.ru.
+site-config.js дополнительно делает браузерный редирект с http:// на https://.
+
+Для Supabase Auth добавьте в Authentication -> URL Configuration:
+  Site URL: https://lunavisual.ru
+  Redirect URLs:
+    https://lunavisual.ru/profile.html
+    https://lunavisual.ru/reset-password.html
+    https://lunavisual.ru/creators.html

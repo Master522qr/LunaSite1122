@@ -1,0 +1,13 @@
+project_id = "pdibtleothnnmihhrbcr"
+
+[functions.creator-oauth-start]
+verify_jwt = false
+
+[functions.creator-oauth-callback]
+verify_jwt = false
+
+[functions.creator-verify]
+verify_jwt = false
+
+[functions.model-download-url]
+verify_jwt = false

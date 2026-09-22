@@ -1,0 +1,29 @@
+LunaVisual — GitHub Pages / launcher setup
+
+1) Keep LunaVisual.exe in the same GitHub Pages folder as index.html.
+   The website download button now uses ./LunaVisual.exe, so it works from GitHub Pages project sites too.
+
+2) Run supabase_setup.sql once in the NEW Supabase project:
+   https://pdibtleothnnmihhrbcr.supabase.co
+
+3) Launcher connection:
+   - LunaVisual.exe was patched from the old Supabase project URL to the new one.
+   - The current publishable key embedded in the launcher matches the site key.
+   - license-server.properties is included for launcher builds/configurations that read an external config.
+
+4) IMPORTANT JAR path used by the current launcher binary:
+   downloads/LunaVisual.jar
+   The launcher executable still requests that internal filename. Upload your LunaVisual.jar to the new
+   Supabase Storage public bucket "downloads" but save/copy it there as "LunaVisual.jar" unless you rebuild
+   the launcher source and change the internal path.
+
+5) Key system:
+   - Website keys live in public.license_keys.
+   - The database functions are in supabase_setup.sql.
+   - get_lunavisual_launcher_state() is available for authenticated launcher sessions.
+
+6) About the launcher Settings screen:
+   The RAR contains the UI/source files, but its compressed source entries could not be unpacked in this
+   environment. The external server configuration is already separated into license-server.properties.
+   To physically remove the server-address control from the launcher Settings UI, provide the source archive
+   as ZIP (or the extracted source folder). Then ui/index.html/ui/app.js can be edited and the launcher rebuilt.

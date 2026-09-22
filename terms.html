@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Пользовательское соглашение LunaVisual — условия использования, политика конфиденциальности и возврат средств.">
+  <link rel="canonical" href="https://lunavisual.ru/terms.html">
+<title>LunaVisual | Пользовательское соглашение</title>
+  
+  <link rel="icon" type="image/png" href="lunavisual-logo.png">
+  <link rel="shortcut icon" type="image/png" href="lunavisual-logo.png">
+  <link rel="apple-touch-icon" href="lunavisual-logo.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --p-primary: #9d4edd;
+      --p-primary-hover: #b366ff;
+      --p-glow: rgba(157, 78, 221, 0.45);
+      --p-deep: #5a189a;
+      --p-electric: #7b2cbf;
+      --p-light: #c77dff;
+      --p-soft: #e0aaff;
+      --p-muted: #9f8bc2;
+
+      --bg-dark: #07060b;
+      --bg-card: rgba(20, 14, 32, 0.7);
+      --bg-card-hover: rgba(32, 22, 52, 0.85);
+
+      --border-subtle: rgba(157, 78, 221, 0.22);
+      --border-active: rgba(199, 125, 255, 0.5);
+
+      --text-main: #f8f6fc;
+      --text-muted: #a39bb5;
+      --text-dim: #706884;
+
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-heading: 'Plus Jakarta Sans', 'Inter', sans-serif;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-user-select: none !important;
+      -moz-user-select: none !important;
+      -ms-user-select: none !important;
+      user-select: none !important;
+      -webkit-touch-callout: none !important;
+    }
+
+    input, textarea, [contenteditable="true"] {
+      -webkit-user-select: text !important;
+      -moz-user-select: text !important;
+      -ms-user-select: text !important;
+      user-select: text !important;
+    }
+
+    img {
+      -webkit-user-drag: none !important;
+      user-drag: none !important;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      color-scheme: dark;
+    }
+
+    /* Ultra-Custom Cyber Neon Scrollbar */
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: var(--p-primary, #9d4edd) var(--bg-dark, #07090e);
+    }
+    ::-webkit-scrollbar {
+      width: 11px;
+      height: 11px;
+    }
+    ::-webkit-scrollbar-button {
+      display: none !important;
+      width: 0 !important;
+      height: 0 !important;
+    }
+    ::-webkit-scrollbar-track {
+      background: linear-gradient(180deg, var(--bg-surface, #0f081a) 0%, var(--bg-dark, #07090e) 100%);
+      border-left: 1px solid var(--border-subtle);
+      box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.7);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, var(--p-light) 0%, var(--p-primary) 35%, var(--p-electric) 70%, var(--p-deep) 100%);
+      border-radius: 999px;
+      border: 2px solid var(--bg-dark, #07090e);
+      box-shadow: 0 0 16px var(--p-glow), inset 0 1px 2px rgba(255, 255, 255, 0.6);
+      transition: all 0.25s ease;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(180deg, #ffffff 0%, var(--p-light) 25%, var(--p-primary-hover) 65%, var(--p-electric) 100%);
+      box-shadow: 0 0 28px var(--p-glow), 0 0 12px var(--p-light), inset 0 1px 3px #ffffff;
+      border-color: rgba(7, 9, 14, 0.6);
+    }
+    ::-webkit-scrollbar-thumb:active {
+      background: linear-gradient(180deg, #ffffff 0%, var(--p-light) 35%, var(--p-primary) 70%, var(--p-deep) 100%);
+      box-shadow: 0 0 35px var(--p-glow), 0 0 16px var(--p-light), inset 0 1px 3px #ffffff;
+    }
+    ::-webkit-scrollbar-corner {
+      background: var(--bg-dark, #07090e);
+    }
+
+    @keyframes pageFadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      background-image: 
+        radial-gradient(ellipse 70% 40% at 50% 0%, var(--border-subtle) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 35% at 85% 30%, var(--border-subtle) 0%, transparent 60%);
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      line-height: 1.65;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+      opacity: 1;
+      animation: pageFadeIn 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      transition: opacity 0.32s cubic-bezier(0.22, 1, 0.36, 1), transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    body.page-transition-exit {
+      opacity: 0 !important;
+      transform: translateY(-6px) !important;
+      pointer-events: none;
+    }
+
+    /* Ambient Glow Lights (Balanced Atmospheric Lighting) */
+    .ambient-glow-1, .ambient-glow-2 {
+      position: fixed;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .ambient-glow-1 {
+      top: -16%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1000px;
+      height: 750px;
+      background: radial-gradient(ellipse at center, var(--theme-glow-1, #9d4edd) 0%, var(--p-electric) 35%, transparent 70%);
+      filter: blur(115px);
+      opacity: 0.55;
+      animation: floatGlow 20s ease-in-out infinite alternate;
+    }
+    .ambient-glow-2 {
+      top: 25%;
+      right: -8%;
+      width: 850px;
+      height: 850px;
+      background: radial-gradient(circle, var(--theme-glow-2, #7b2cbf) 0%, var(--p-deep) 40%, transparent 70%);
+      filter: blur(125px);
+      opacity: 0.45;
+      animation: floatGlow 24s ease-in-out infinite alternate -6s;
+    }
+
+    /* Full-Page Cyber Grid with Squares & Ambient Gradient */
+    .cyber-grid-bg {
+      position: fixed;
+      inset: 0;
+      background-image: 
+        linear-gradient(to right, var(--border-subtle) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--border-subtle) 1px, transparent 1px);
+      background-size: 55px 55px;
+      mask-image: radial-gradient(circle at 50% 50%, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.55) 75%, transparent 100%);
+      -webkit-mask-image: radial-gradient(circle at 50% 50%, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.55) 75%, transparent 100%);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.65;
+    }
+
+    @keyframes floatGlow {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(40px, 30px) scale(1.1); }
+      100% { transform: translate(-30px, 50px) scale(0.95); }
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 1rem 0;
+      background: rgba(7, 6, 11, 0.75);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-subtle);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      font-family: var(--font-heading);
+      font-weight: 900;
+      font-size: 1.35rem;
+      letter-spacing: 0.08em;
+      color: #fff;
+    }
+
+    .logo-img {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      object-fit: cover;
+      border: 1.5px solid var(--border-active);
+      box-shadow: 0 0 18px var(--p-glow);
+    }
+
+    nav ul {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      list-style: none;
+      background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-card) 100%);
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border-active);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 25px var(--p-glow);
+    }
+
+    .nav-link-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+    .nav-link-btn:hover {
+      color: #fff;
+      background: linear-gradient(135deg, var(--border-subtle) 0%, var(--border-active) 100%);
+      box-shadow: 0 0 15px var(--p-glow);
+    }
+
+    .lang-switcher {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border-subtle);
+      border-radius: 999px;
+      padding: 3px 6px;
+      backdrop-filter: blur(8px);
+    }
+    .lang-btn {
+      background: transparent;
+      border: 0;
+      color: var(--text-muted);
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .lang-btn:hover { color: #fff; }
+    .lang-btn.active {
+      background: linear-gradient(135deg, var(--p-primary), var(--p-electric));
+      color: var(--p-contrast-text, #fff);
+      box-shadow: 0 0 10px var(--p-glow);
+    }
+    .lang-divider {
+      color: rgba(255, 255, 255, 0.2);
+      font-size: 0.72rem;
+    }
+
+    /* Terms Layout */
+    .terms-page-wrapper {
+      flex: 1;
+      max-width: 860px;
+      width: 100%;
+      margin: 8rem auto 4rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .page-back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: transparent;
+      border: none;
+      color: var(--p-soft);
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 0.92rem;
+      cursor: pointer;
+      margin-bottom: 2rem;
+      transition: all 0.2s ease;
+    }
+    .page-back-btn:hover {
+      color: #fff;
+      transform: translateX(-4px);
+    }
+
+    .terms-main-card {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border-subtle);
+      border-radius: 28px;
+      padding: 3rem;
+      backdrop-filter: blur(24px);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 50px var(--p-glow);
+    }
+
+    .terms-main-card h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(2.2rem, 4vw, 3rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.4rem;
+      line-height: 1.15;
+    }
+    .terms-main-card h1 span {
+      background: linear-gradient(135deg, #ffffff 10%, var(--p-soft) 50%, var(--p-primary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .terms-meta {
+      font-size: 0.86rem;
+      color: var(--p-muted);
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .terms-main-card h2 {
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #fff;
+      margin: 2.8rem 0 1rem 0;
+      padding-left: 0.8rem;
+      border-left: 3.5px solid var(--p-light);
+    }
+
+    .terms-main-card h3 {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--p-soft);
+      margin: 1.8rem 0 0.6rem 0;
+    }
+
+    .terms-main-card p {
+      margin-bottom: 1rem;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.75;
+    }
+
+    .terms-main-card ul, .terms-main-card ol {
+      margin: 0.5rem 0 1.25rem 1.5rem;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+    .terms-main-card li {
+      margin-bottom: 0.5rem;
+      line-height: 1.65;
+    }
+    .terms-main-card li strong {
+      color: #fff;
+    }
+
+    .terms-card {
+      background: var(--bg-surface);
+      border: 1.5px solid var(--border-subtle);
+      border-radius: 18px;
+      padding: 1.5rem 1.8rem;
+      margin: 1.5rem 0;
+    }
+    .terms-card p:last-child, .terms-card ul:last-child {
+      margin-bottom: 0;
+    }
+
+    .terms-warn {
+      background: rgba(239, 68, 68, 0.12);
+      border: 1.5px solid rgba(239, 68, 68, 0.35);
+      border-radius: 18px;
+      padding: 1.5rem 1.8rem;
+      margin: 1.5rem 0;
+    }
+    .terms-warn strong {
+      color: #fca5a5;
+    }
+
+    .terms-link {
+      color: var(--p-light);
+      cursor: pointer;
+      text-decoration: none;
+      font-weight: 700;
+      transition: color 0.2s ease;
+    }
+    .terms-link:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    .terms-divider {
+      border: none;
+      border-top: 1px solid var(--border-subtle);
+      margin: 3rem 0;
+    }
+
+    .terms-footer-block {
+      margin-top: 3.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 0.84rem;
+      color: var(--text-dim);
+      text-align: center;
+      line-height: 1.7;
+    }
+
+    /* Footer */
+    footer {
+      padding: 3rem 0;
+      border-top: 1px solid var(--border-subtle);
+      background: transparent;
+      text-align: center;
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+    .footer-links button {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+    .footer-links button:hover { color: var(--p-soft); }
+
+    .footer-links-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 1.25rem;
+    }
+    .footer-contact-link {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      transition: color 0.2s ease, transform 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .footer-contact-link:hover {
+      color: #fff;
+      text-shadow: 0 0 12px var(--p-glow);
+    }
+    .footer-contact-link svg {
+      color: var(--p-light);
+      transition: transform 0.2s ease;
+    }
+    .footer-contact-link:hover svg {
+      transform: scale(1.15);
+      color: #fff;
+    }
+    .footer-divider-dot {
+      color: var(--border-active);
+      font-size: 0.75rem;
+      opacity: 0.5;
+    }
+    .footer-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 0.85rem;
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      margin-top: 1rem;
+    }
+    .footer-plat-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 10px;
+      border-radius: 6px;
+      background: rgba(157, 78, 221, 0.08);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      font-size: 0.76rem;
+      font-family: monospace;
+    }
+    .footer-plat-badge strong {
+      color: var(--p-light);
+    }
+    .copyright { font-size: 0.8rem; color: var(--text-dim); }
+
+    @media (max-width: 640px) {
+      .terms-page-wrapper { margin-top: 6.5rem; }
+      .terms-main-card { padding: 2rem 1.25rem; }
+    }
+  </style>
+  <link rel="stylesheet" href="luna-theme.css">
+</head>
+<body>
+
+  <div class="ambient-glow-1"></div>
+  <div class="ambient-glow-2"></div>
+  <div class="cyber-grid-bg"></div>
+
+  <!-- Sticky Header -->
+  <header>
+    <div class="nav-container">
+      <button type="button" class="logo" onclick="location.href='index.html'" aria-label="LunaVisual">
+        <img class="logo-img" src="lunavisual-logo.png" alt="LunaVisual Logo">
+        LUNAVISUAL
+      </button>
+      <nav>
+        <ul>
+          <li><button type="button" class="nav-link-btn" onclick="location.href='index.html'" data-i18n="nav_home">Главная</button></li>
+          <li><button type="button" class="nav-link-btn" onclick="location.href='index.html#features'" data-i18n="nav_features">Особенности</button></li>
+          <li><button type="button" class="nav-link-btn" onclick="location.href='index.html#pricing'" data-i18n="nav_pricing">Цены</button></li>
+          <li><button type="button" class="nav-link-btn" onclick="location.href='profile.html'" data-i18n="nav_profile_long">Личный кабинет</button></li>
+          <li class="lang-switch-item">
+            <div class="lang-switcher" role="group" aria-label="Language Selector">
+              <button type="button" class="lang-btn active" data-lang="ru">RU</button>
+              <span class="lang-divider">/</span>
+              <button type="button" class="lang-btn" data-lang="en">EN</button>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Terms Content -->
+  <div class="terms-page-wrapper">
+
+    <button type="button" class="page-back-btn" onclick="location.href='index.html'" data-i18n="prof_back">
+      ← Вернуться на главную
+    </button>
+
+    <div class="terms-main-card">
+      <!-- Russian Language View -->
+      <div class="lang-view" data-lang-view="ru">
+        <h1>Пользовательское <span>Соглашение</span></h1>
+        <p class="terms-meta">Последнее обновление: 14 августа 2026 г. &nbsp;·&nbsp; Версия 1.0</p>
+
+        <!-- 1. Общие положения -->
+        <h2>1. Общие положения</h2>
+        <p>Настоящее Пользовательское соглашение (далее — «Соглашение») регулирует отношения между администрацией проекта <strong>LunaVisual</strong> (далее — «Администрация», «мы») и физическим лицом (далее — «Пользователь», «вы»), использующим веб-сайт <span class="terms-link" onclick="location.href='index.html'">LunaVisual</span>, программное обеспечение LunaVisual для Minecraft и связанные сервисы (далее — «Сервис»).</p>
+        <p>Регистрируясь на сайте, приобретая подписку или скачивая клиент LunaVisual, вы подтверждаете, что полностью прочитали, поняли и принимаете условия настоящего Соглашения.</p>
+
+        <!-- 2. Описание сервиса -->
+        <h2>2. Описание сервиса</h2>
+        <p>LunaVisual — это модификация (мод) для игры Minecraft версии 1.21.11 на платформе Fabric Loader, предоставляющая визуальные улучшения геймплея: кастомные ViewModel, шейдерные эффекты Chams, ESP-подсветку, адаптивный HUD, косметические элементы и другие функции.</p>
+        <div class="terms-card">
+          <p>Сервис включает:</p>
+          <ul>
+            <li>Веб-сайт для регистрации, авторизации и управления лицензией;</li>
+            <li>Систему лицензионных ключей для активации подписки;</li>
+            <li>Скачивание официального комплекта LunaVisual Launcher и клиентского файла LunaVisual.jar;</li>
+            <li>Систему привязки аппаратного идентификатора (HWID).</li>
+          </ul>
+        </div>
+
+        <!-- 3. Регистрация и аккаунт -->
+        <h2>3. Регистрация и аккаунт</h2>
+        <p><strong>3.1.</strong> Для использования Сервиса необходимо зарегистрироваться, указав действующий адрес электронной почты и игровой никнейм Minecraft.</p>
+        <p><strong>3.2.</strong> Вы несёте полную ответственность за сохранность данных своего аккаунта (логин, пароль) и за все действия, совершённые с его использованием.</p>
+        <p><strong>3.3.</strong> Передача аккаунта третьим лицам запрещена.</p>
+        <p><strong>3.4.</strong> Администрация оставляет за собой право заблокировать или удалить аккаунт при нарушении условий настоящего Соглашения без возврата средств.</p>
+
+        <!-- 4. Подписка и оплата -->
+        <h2>4. Подписка и оплата</h2>
+        <p><strong>4.1.</strong> Доступ к функциям LunaVisual предоставляется на платной основе по тарифным планам:</p>
+        <div class="terms-card">
+          <ul>
+            <li><strong>7 Дней</strong> — 270 ₽</li>
+            <li><strong>30 Дней</strong> — 450 ₽</li>
+            <li><strong>90 Дней</strong> — 670 ₽</li>
+            <li><strong>Навсегда (Lifetime)</strong> — 1500 ₽ + временный Alpha-доступ на 7 дней бесплатно</li>
+            <li><strong>Alpha-доступ</strong> — 2400 ₽; срок Alpha-лицензии определяется выданным отдельным Alpha-ключом</li>
+          </ul>
+        </div>
+        <p><strong>4.2.</strong> Оплата производится через платёжный агрегатор AnyPay с использованием доступных методов: СБП (QR-код), банковские карты МИР/Visa/Mastercard, ЮMoney, криптовалюта.</p>
+        <p><strong>4.3.</strong> После успешной оплаты лицензионный ключ генерируется автоматически и привязывается к аккаунту Пользователя.</p>
+        <p><strong>4.4.</strong> Цены указаны в российских рублях (₽) и могут быть изменены Администрацией в одностороннем порядке. Изменение цен не затрагивает уже оплаченные подписки.</p>
+
+        <!-- 5. Привязка HWID -->
+        <h2>5. Привязка HWID</h2>
+        <p><strong>5.1.</strong> При первом запуске клиента LunaVisual в игре Minecraft, модификация автоматически привязывает аппаратный идентификатор вашего компьютера (HWID) к вашему профилю.</p>
+        <p><strong>5.2.</strong> Одна подписка может быть активна только на одном устройстве одновременно.</p>
+        <p><strong>5.3.</strong> Для переноса лицензии на другое устройство необходимо выполнить сброс HWID (бесплатно для администратора, платно через ключ «Сброс HWID» для обычных пользователей).</p>
+
+        <hr class="terms-divider">
+
+        <!-- 6. Политика конфиденциальности -->
+        <h2>6. Политика конфиденциальности</h2>
+
+        <h3>6.1. Какие данные мы собираем</h3>
+        <div class="terms-card">
+          <ul>
+            <li><strong>Email-адрес</strong> — для авторизации и связи;</li>
+            <li><strong>Игровой никнейм Minecraft</strong> — для привязки лицензии;</li>
+            <li><strong>Аппаратный идентификатор (HWID)</strong> — для защиты от несанкционированного распространения клиента;</li>
+            <li><strong>IP-адрес</strong> — может фиксироваться серверами автоматически для обеспечения безопасности.</li>
+          </ul>
+        </div>
+
+        <h3>6.2. Как мы используем данные</h3>
+        <ul>
+          <li>Для предоставления, поддержки и улучшения Сервиса;</li>
+          <li>Для верификации лицензии и привязки устройства;</li>
+          <li>Для отправки уведомлений о статусе подписки;</li>
+          <li>Для предотвращения мошенничества и нарушений.</li>
+        </ul>
+
+        <h3>6.3. Передача данных третьим лицам</h3>
+        <p>Мы <strong>не продаём и не передаём</strong> персональные данные Пользователей третьим лицам, за исключением случаев, предусмотренных законодательством Российской Федерации.</p>
+
+        <h3>6.4. Хранение данных</h3>
+        <p>Данные хранятся на защищённых серверах платформы Supabase (облачная база данных) с шифрованием трафика по протоколу TLS/SSL. Мы принимаем разумные меры для защиты ваших данных, но не можем гарантировать абсолютную безопасность при передаче через сеть Интернет.</p>
+
+        <h3>6.5. Удаление данных</h3>
+        <p>Вы имеете право запросить полное удаление вашего аккаунта и связанных данных, написав на адрес <span class="terms-link" onclick="location.href='mailto:techbitsupport@gmail.com'">techbitsupport@gmail.com</span> или обратившись в наш <span class="terms-link" onclick="window.open('https://discord.gg/7FhVmvPtME','_blank')">Discord</span>.</p>
+
+        <hr class="terms-divider">
+
+        <!-- 7. Возврат средств -->
+        <h2>7. Возврат средств</h2>
+        <p><strong>7.1.</strong> Поскольку Сервис предоставляет цифровой контент (программное обеспечение), активируемый моментально после оплаты, возврат средств по общему правилу <strong>не осуществляется</strong>.</p>
+        <p><strong>7.2.</strong> Исключения составляют случаи:</p>
+        <ul>
+          <li>Двойное списание средств за одну и ту же покупку;</li>
+          <li>Техническая невозможность предоставить оплаченную услугу по вине Администрации;</li>
+          <li>Ошибочный платёж (при обращении в течение 24 часов с момента оплаты).</li>
+        </ul>
+        <p><strong>7.3.</strong> Для рассмотрения заявки на возврат обратитесь на почту <span class="terms-link" onclick="location.href='mailto:techbitsupport@gmail.com'">techbitsupport@gmail.com</span> с указанием email аккаунта, даты платежа и причины возврата. Срок рассмотрения — до 7 рабочих дней.</p>
+
+        <hr class="terms-divider">
+
+        <!-- 8. Ограничения использования -->
+        <h2>8. Ограничения использования</h2>
+        <p>Пользователю запрещается:</p>
+        <ul>
+          <li>Декомпилировать, модифицировать, реверс-инжинирить исходный код клиента LunaVisual;</li>
+          <li>Распространять, перепродавать или публично выкладывать файлы клиента;</li>
+          <li>Передавать лицензионные ключи или данные аккаунта третьим лицам;</li>
+          <li>Использовать Сервис для нарушения правил серверов Minecraft или законодательства;</li>
+          <li>Намеренно создавать нагрузку на серверы Сервиса (DDoS, спам-запросы и т.д.);</li>
+          <li><strong>Взламывать, «крякать», обходить или пытаться обойти систему лицензирования, защиту HWID или любые другие механизмы защиты клиента LunaVisual;</strong></li>
+          <li><strong>Создавать, распространять, продавать или использовать «кряки», патчи, генераторы ключей, эмуляторы лицензии или любое иное программное обеспечение, направленное на обход защиты LunaVisual;</strong></li>
+          <li><strong>Использовать модифицированные, взломанные или нелегально полученные копии клиента LunaVisual;</strong></li>
+          <li><strong>Публиковать в открытом доступе лицензионные ключи, обфусцированный или деобфусцированный исходный код клиента.</strong></li>
+        </ul>
+
+        <h3>8.1. Последствия нарушений</h3>
+        <div class="terms-warn">
+          <p>В случае обнаружения попытки взлома, использования кряка, распространения нелегальных копий или любых иных действий, нарушающих пункт 8 настоящего Соглашения, Администрация имеет право применить следующие санкции <strong>без предварительного уведомления и без возврата средств</strong>:</p>
+          <ul>
+            <li><strong>Немедленная деактивация подписки</strong> — лицензия аннулируется, доступ к клиенту прекращается;</li>
+            <li><strong>Полная блокировка аккаунта</strong> — без возможности восстановления;</li>
+            <li><strong>Блокировка HWID</strong> — запрет на регистрацию новых аккаунтов с данного устройства;</li>
+            <li><strong>Аннулирование всех лицензионных ключей</strong>, привязанных к нарушителю;</li>
+            <li><strong>Занесение в чёрный список</strong> — перманентный бан на приобретение и использование любых продуктов LunaVisual.</li>
+          </ul>
+        </div>
+        <p>Администрация оставляет за собой право предпринимать дополнительные меры защиты своих интересов в соответствии с действующим законодательством Российской Федерации, включая обращение в правоохранительные органы.</p>
+
+        <!-- 9. Ответственность -->
+        <h2>9. Ограничение ответственности</h2>
+        <p><strong>9.1.</strong> Сервис предоставляется «как есть» (as is). Администрация не гарантирует бесперебойную работу Сервиса и совместимость со всеми конфигурациями оборудования.</p>
+        <p><strong>9.2.</strong> Администрация не несёт ответственности за блокировки аккаунтов Пользователей на игровых серверах Minecraft, связанные с использованием модификации LunaVisual.</p>
+        <p><strong>9.3.</strong> Максимальная совокупная ответственность Администрации ограничивается суммой, уплаченной Пользователем за текущий период подписки.</p>
+
+        <!-- 10. Изменения -->
+        <h2>10. Изменение условий</h2>
+        <p>Администрация вправе изменять настоящее Соглашение в одностороннем порядке. Актуальная версия всегда доступна на странице <span class="terms-link" onclick="location.reload()">LunaVisual / terms.html</span>. Продолжение использования Сервиса после внесения изменений означает согласие с новой редакцией Соглашения.</p>
+
+        <!-- 11. Контакты -->
+        <h2>11. Контактная информация</h2>
+        <p>По всем вопросам, связанным с работой Сервиса, оплатой, возвратом средств или удалением данных, обращайтесь:</p>
+        <div class="terms-card">
+          <ul>
+            <li><strong>Email Поддержки:</strong> <span class="terms-link" onclick="location.href='mailto:techbitsupport@gmail.com'">techbitsupport@gmail.com</span></li>
+            <li><strong>Поддержка:</strong> <span class="terms-link" onclick="window.open('https://t.me/Luna_visual','_blank')">t.me/Luna_visual</span></li>
+            <li><strong>Discord:</strong> <span class="terms-link" onclick="window.open('https://discord.gg/7FhVmvPtME','_blank')">discord.gg/7FhVmvPtME</span></li>
+            <li><strong>Сайт:</strong> <span class="terms-link" onclick="location.href='index.html'">LunaVisual</span></li>
+          </ul>
+        </div>
+
+        <div class="terms-footer-block">
+          © 2026 LunaVisual. Все права защищены.<br>
+          Minecraft является торговой маркой Mojang Synergies AB. Данный проект не аффилирован с Mojang.
+        </div>
+      </div>
+
+      <!-- English Language View -->
+      <div class="lang-view" data-lang-view="en" style="display:none;">
+        <h1>Terms of <span>Service</span></h1>
+        <p class="terms-meta">Last Updated: August 14, 2026 &nbsp;·&nbsp; Version 1.0</p>
+
+        <!-- 1. General Provisions -->
+        <h2>1. General Provisions</h2>
+        <p>These Terms of Service (hereinafter "Terms") govern the relationship between the administration of the <strong>LunaVisual</strong> project (hereinafter "Administration", "we", "us") and any individual (hereinafter "User", "you") accessing the website <span class="terms-link" onclick="location.href='index.html'">LunaVisual</span>, the LunaVisual software for Minecraft, and associated services (hereinafter "Service").</p>
+        <p>By registering on the website, purchasing a subscription, or downloading the LunaVisual client, you confirm that you have fully read, understood, and agreed to these Terms.</p>
+
+        <!-- 2. Description of Service -->
+        <h2>2. Description of Service</h2>
+        <p>LunaVisual is a client modification (mod) for Minecraft version 1.21.11 on the Fabric Loader platform, providing visual gameplay enhancements: custom ViewModel, Chams shader effects, ESP highlighting, adaptive HUD, cosmetic elements, and other features.</p>
+        <div class="terms-card">
+          <p>The Service includes:</p>
+          <ul>
+            <li>Website for registration, authentication, and license management;</li>
+            <li>License key system for subscription activation;</li>
+            <li>Downloads of the official LunaVisual Launcher bundle and LunaVisual.jar client file;</li>
+            <li>Hardware Identification (HWID) binding system.</li>
+          </ul>
+        </div>
+
+        <!-- 3. Registration & Account -->
+        <h2>3. Registration & Account</h2>
+        <p><strong>3.1.</strong> To use the Service, you must register by providing a valid email address and a Minecraft in-game nickname.</p>
+        <p><strong>3.2.</strong> You bear full responsibility for safeguarding your account credentials (login, password) and for all actions taken under your account.</p>
+        <p><strong>3.3.</strong> Transferring accounts to third parties is strictly prohibited.</p>
+        <p><strong>3.4.</strong> The Administration reserves the right to suspend or terminate any account violating these Terms without refund.</p>
+
+        <!-- 4. Subscription & Payment -->
+        <h2>4. Subscription & Payment</h2>
+        <p><strong>4.1.</strong> Access to LunaVisual features is offered on a paid subscription basis:</p>
+        <div class="terms-card">
+          <ul>
+            <li><strong>7 Days</strong> — 270 ₽</li>
+            <li><strong>30 Days</strong> — 450 ₽</li>
+            <li><strong>90 Days</strong> — 670 ₽</li>
+            <li><strong>Lifetime (Full Access)</strong> — 1500 ₽ + temporary 7-day Alpha access at no extra charge</li>
+            <li><strong>Alpha Access</strong> — 2400 ₽; Alpha duration is determined by the separately issued Alpha key</li>
+          </ul>
+        </div>
+        <p><strong>4.2.</strong> Payments are processed via the AnyPay payment aggregator supporting SBP (QR code), Bank Cards (MIR/Visa/Mastercard), YuMoney, and cryptocurrency.</p>
+        <p><strong>4.3.</strong> Upon successful payment, a license key is automatically generated and linked to the User's account.</p>
+        <p><strong>4.4.</strong> Prices are displayed in Russian Rubles (₽) and may be adjusted unilaterally by the Administration. Price changes will not affect active paid subscriptions.</p>
+
+        <!-- 5. HWID Binding -->
+        <h2>5. HWID Binding</h2>
+        <p><strong>5.1.</strong> Upon the first launch of the LunaVisual client in Minecraft, the mod automatically binds the unique hardware identifier (HWID) of your computer to your profile.</p>
+        <p><strong>5.2.</strong> One subscription can only be active on one computer at any given time.</p>
+        <p><strong>5.3.</strong> To transfer your license to a new PC, an HWID reset must be performed.</p>
+
+        <hr class="terms-divider">
+
+        <!-- 6. Privacy Policy -->
+        <h2>6. Privacy Policy</h2>
+        <h3>6.1. Data We Collect</h3>
+        <div class="terms-card">
+          <ul>
+            <li><strong>Email Address</strong> — for authentication and account communication;</li>
+            <li><strong>Minecraft In-Game Nickname</strong> — for license association;</li>
+            <li><strong>Hardware Identifier (HWID)</strong> — for security and software protection;</li>
+            <li><strong>IP Address</strong> — logged automatically for security and anti-abuse verification.</li>
+          </ul>
+        </div>
+
+        <h3>6.2. How We Use Data</h3>
+        <ul>
+          <li>To provide, maintain, and enhance the Service;</li>
+          <li>To verify licenses and device bindings;</li>
+          <li>To notify you regarding subscription status;</li>
+          <li>To prevent fraud, cracking, and abuse.</li>
+        </ul>
+
+        <h3>6.3. Third-Party Sharing</h3>
+        <p>We <strong>do not sell or share</strong> User personal data with third parties, except as required by law.</p>
+
+        <h3>6.4. Data Storage</h3>
+        <p>Data is securely stored on Supabase cloud servers with end-to-end TLS/SSL encryption.</p>
+
+        <h3>6.5. Data Deletion</h3>
+        <p>You have the right to request full deletion of your account and personal data by emailing <span class="terms-link" onclick="location.href='mailto:techbitsupport@gmail.com'">techbitsupport@gmail.com</span> or contacting our <span class="terms-link" onclick="window.open('https://discord.gg/7FhVmvPtME','_blank')">Discord Server</span>.</p>
+
+        <hr class="terms-divider">
+
+        <!-- 7. Refund Policy -->
+        <h2>7. Refund Policy</h2>
+        <p><strong>7.1.</strong> As the Service delivers digital software immediately activated upon purchase, all sales are generally <strong>final and non-refundable</strong>.</p>
+        <p><strong>7.2.</strong> Exceptions are limited to:</p>
+        <ul>
+          <li>Duplicate charges for the same transaction;</li>
+          <li>Technical failure to provide the paid service due to fault of Administration;</li>
+          <li>Accidental payment (if requested within 24 hours of purchase).</li>
+        </ul>
+        <p><strong>7.3.</strong> To submit a refund request, contact <span class="terms-link" onclick="location.href='mailto:techbitsupport@gmail.com'">techbitsupport@gmail.com</span> with your account email, payment date, and rationale. Review time is up to 7 business days.</p>
+
+        <hr class="terms-divider">
+
+        <!-- 8. Usage Restrictions -->
+        <h2>8. Usage Restrictions</h2>
+        <p>Users are strictly prohibited from:</p>
+        <ul>
+          <li>Decompiling, modifying, or reverse engineering the LunaVisual client source code;</li>
+          <li>Redistributing, reselling, or publicly sharing client files;</li>
+          <li>Transferring license keys or account credentials to third parties;</li>
+          <li>Using the Service to violate Minecraft server rules or applicable laws;</li>
+          <li>Intentionally overloading Service servers (DDoS, spam requests, etc.);</li>
+          <li><strong>Cracking, bypassing, or attempting to circumvent the licensing system, HWID protection, or any other security mechanism;</strong></li>
+          <li><strong>Developing, distributing, or selling cracks, patches, keygens, or license emulators;</strong></li>
+          <li><strong>Using modified, cracked, or unauthorized copies of the LunaVisual client;</strong></li>
+          <li><strong>Publicly publishing license keys or obfuscated/deobfuscated client code.</strong></li>
+        </ul>
+
+        <h3>8.1. Violation Consequences</h3>
+        <div class="terms-warn">
+          <p>If cracking attempts, unauthorized distribution, or violations of Section 8 are detected, the Administration reserves the right to enforce the following sanctions <strong>without prior notice and without refund</strong>:</p>
+          <ul>
+            <li><strong>Immediate subscription deactivation</strong> — license revoked, client access blocked;</li>
+            <li><strong>Permanent account termination</strong> — without possibility of recovery;</li>
+            <li><strong>HWID Blacklisting</strong> — prevention of future account creation from the device;</li>
+            <li><strong>Revocation of all linked license keys</strong>;</li>
+            <li><strong>Permanent ban</strong> from purchasing or using any LunaVisual products.</li>
+          </ul>
+        </div>
+
+        <!-- 9. Limitation of Liability -->
+        <h2>9. Limitation of Liability</h2>
+        <p><strong>9.1.</strong> The Service is provided "AS IS". The Administration does not guarantee uninterrupted operation or compatibility with all hardware configurations.</p>
+        <p><strong>9.2.</strong> The Administration is not liable for account bans on third-party Minecraft servers associated with client usage.</p>
+        <p><strong>9.3.</strong> Maximum aggregate liability is limited to the amount paid by the User for the current subscription period.</p>
+
+        <!-- 10. Modifications -->
+        <h2>10. Modifications to Terms</h2>
+        <p>The Administration may update these Terms at any time. The current version is always accessible at <span class="terms-link" onclick="location.reload()">LunaVisual / terms.html</span>. Continued use of the Service signifies acceptance of updated Terms.</p>
+
+        <!-- 11. Contact Info -->
+        <h2>11. Contact Information</h2>
+        <p>For questions regarding the Service, billing, refunds, or data requests, contact us at:</p>
+        <div class="terms-card">
+          <ul>
+            <li><strong>Email:</strong> <span class="terms-link" onclick="location.href='mailto:techbitsupport@gmail.com'">techbitsupport@gmail.com</span></li>
+            <li><strong>Support:</strong> <span class="terms-link" onclick="window.open('https://t.me/Luna_visual','_blank')">t.me/Luna_visual</span></li>
+            <li><strong>Discord:</strong> <span class="terms-link" onclick="window.open('https://discord.gg/7FhVmvPtME','_blank')">discord.gg/7FhVmvPtME</span></li>
+            <li><strong>Website:</strong> <span class="terms-link" onclick="location.href='index.html'">LunaVisual</span></li>
+          </ul>
+        </div>
+
+        <div class="terms-footer-block">
+          © 2026 LunaVisual. All rights reserved.<br>
+          Minecraft is a trademark of Mojang Synergies AB. This project is not affiliated with Mojang.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-links">
+      <button type="button" onclick="location.href='index.html'" data-i18n="footer_home">Главная</button>
+      <button type="button" onclick="location.href='index.html#features'" data-i18n="footer_features">Особенности</button>
+      <button type="button" onclick="location.href='index.html#pricing'" data-i18n="footer_pricing">Тарифы</button>
+      <button type="button" onclick="location.href='profile.html'" data-i18n="footer_profile">Личный кабинет</button>
+      <button type="button" onclick="location.href='terms.html'" data-i18n="footer_terms">Пользовательское соглашение</button>
+      <button type="button" onclick="location.href='privacy.html'" data-i18n="footer_privacy">Политика конфиденциальности</button>
+    </div>
+
+        <!-- Support Channels Row -->
+    <div class="footer-links-row" style="margin-top: 1rem;">
+      <button type="button" class="footer-contact-link" onclick="window.open('https://t.me/Luna_visual','_blank')">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.75-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
+        <span>Telegram Поддержка: @Luna_visual</span>
+      </button>
+      <span class="footer-divider-dot">•</span>
+      <button type="button" class="footer-contact-link" onclick="location.href='mailto:techbitsupport@gmail.com'">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <span>Email: techbitsupport@gmail.com</span>
+      </button>
+      <span class="footer-divider-dot">•</span>
+      <button type="button" class="footer-contact-link" onclick="location.href='mailto:techbitsupport@gmail.com'">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <span>Email: techbitsupport@gmail.com</span>
+      </button>
+      <span class="footer-divider-dot">•</span>
+      <button type="button" class="footer-contact-link" onclick="window.open('https://discord.gg/7FhVmvPtME','_blank')">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.893.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+        <span>Discord Сообщество</span>
+      </button>
+    </div>
+
+    <!-- Verification & Copyright Row -->
+    <div class="footer-meta-row">
+      <span class="footer-plat-badge">Код проверки кассы: <strong>PLAT</strong></span>
+      <span class="footer-divider-dot">•</span>
+      <span class="copyright" data-i18n="footer_copy">
+        &copy; 2026 LunaVisual. Все права защищены. Minecraft является торговой маркой Mojang Synergies AB. Данный сайт не аффилирован с Mojang.
+      </span>
+    </div>
+  </footer>
+
+  <script src="app.js?v=20260815_terms_cyber"></script>
+<script src="site-config.js"></script>
+</body>
+</html>

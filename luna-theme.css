@@ -1,0 +1,37 @@
+/* LunaVisual moonlight reset — appended after legacy page styles. */
+:root {
+  --p-primary:#d9e8ff !important; --p-primary-hover:#ffffff !important; --p-light:#f4f8ff !important;
+  --p-electric:#a9c9ee !important; --p-deep:#5b7698 !important; --p-soft:#dceaff !important;
+  --bg-dark:#000 !important; --bg-surface:#05070a !important; --bg-card:#080b10 !important; --bg-card-hover:#0b1017 !important;
+  --text-primary:#f7f9fc !important; --text-secondary:#aeb8c6 !important; --text-muted:#707a88 !important;
+  --border-subtle:rgba(205,225,255,.12) !important; --border-active:rgba(220,237,255,.34) !important;
+  --theme-glow-1:#b8d9ff !important; --theme-glow-2:#6f9fce !important; --theme-glow-3:#e7f2ff !important;
+  --ink:#000 !important; --surface:#05070a !important; --surface-raised:#090d12 !important;
+  --line:rgba(220,235,255,.11) !important; --line-strong:rgba(220,235,255,.26) !important;
+  --paper:#f7f9fc !important; --muted:#9da8b6 !important; --quiet:#687483 !important;
+  --violet:#dceaff !important; --blue:#9fc8f2 !important; --pink:#dceaff !important;
+}
+html, body { background:#000 !important; color:#f7f9fc !important; }
+body, body::before { background:#000 !important; }
+body::before { filter:none !important; opacity:1 !important; }
+body::after { opacity:.10 !important; background-image:linear-gradient(rgba(215,232,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(215,232,255,.035) 1px,transparent 1px) !important; }
+.ambient-glow-1,.ambient-glow-2 { background:radial-gradient(circle,rgba(190,220,255,.18) 0%,rgba(91,126,166,.05) 45%,transparent 72%) !important; filter:blur(90px) !important; }
+header { background:rgba(0,0,0,.94) !important; border-bottom:1px solid rgba(220,235,255,.10) !important; box-shadow:none !important; backdrop-filter:none !important; -webkit-backdrop-filter:none !important; }
+.logo-img { content:url('lunavisual-logo.png'); border:1px solid rgba(225,240,255,.18) !important; box-shadow:0 0 22px rgba(160,205,255,.12); }
+.hero-main-card img,.hero-logo-wrapper img { content:url('lunavisual-logo.png'); }
+.hero-main-card,.hero-logo-wrapper,.bento-card,.pricing-card,.faq-item,.profile-card,.admin-card,.settings-card,.privacy-card,.terms-card,.modal-content,.auth-modal-content,.checkout-content {
+  background:#06090d !important; border:1px solid rgba(220,235,255,.11) !important; box-shadow:none !important; backdrop-filter:none !important; -webkit-backdrop-filter:none !important;
+}
+.hero-main-card:hover,.bento-card:hover,.pricing-card:hover,.faq-item:hover { background:#090d13 !important; border-color:rgba(225,240,255,.24) !important; transform:none !important; box-shadow:0 0 28px rgba(153,198,240,.06) !important; }
+.pricing-card.featured { background:#080d13 !important; border-color:rgba(221,237,255,.32) !important; transform:none !important; }
+.featured-ribbon { background:#eef6ff !important; color:#020306 !important; }
+.btn-plan-buy,.btn-hero-primary,.btn-primary,.btn-nav,.btn-submit,.btn-save,.btn-action-primary {
+  background:#edf5ff !important; color:#05070a !important; border:1px solid #edf5ff !important; box-shadow:0 0 22px rgba(190,220,255,.10) !important;
+}
+.btn-plan-buy:hover,.btn-hero-primary:hover,.btn-primary:hover,.btn-nav:hover,.btn-submit:hover,.btn-save:hover,.btn-action-primary:hover { background:#fff !important; transform:translateY(-1px) !important; box-shadow:0 0 30px rgba(190,220,255,.17) !important; }
+.section-title span,.hero-title span,.hero-content h1 span,.plan-price,.feature-check,.section-tag { color:#e4f0ff !important; -webkit-text-stroke:0 !important; text-shadow:0 0 18px rgba(178,214,255,.13) !important; }
+.lang-switcher,.btn-auth,.btn-profile { background:#05080c !important; border-color:rgba(220,235,255,.13) !important; backdrop-filter:none !important; }
+.lang-btn.active { background:#111822 !important; border-color:rgba(220,235,255,.26) !important; box-shadow:none !important; }
+footer { background:#000 !important; border-top:1px solid rgba(220,235,255,.09) !important; }
+* { scrollbar-color:#27313d #000; }
+::selection { background:#dceaff !important; color:#000 !important; }
